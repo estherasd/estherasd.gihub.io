@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página web HTML5</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        header {
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #contenido {
+            padding: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+            resize: both;
+            overflow: auto;
+        }
+    </style>
+    <script>
+        var step = 1;
+        var nSteps = 5
+        function next(){
+            step++;
+            if (step > nSteps) return;
+            var exNumber = document.getElementById('exNumber');
+            exNumber.innerText = step;
+            var exContent = document.getElementById('exContent');
+            var sentence = document.getElementById('sentence');
+            switch(step){
+                case 2: exContent.innerHTML = "Varía el tercer número"; 
+                        break;
+                case 3: exContent.innerHTML = "Hacer más círculos: Copia la sentencia 2 veces"; break;
+                case 4: exContent.innerHTML = "Copia este contenido:";
+                        sentence.innerHTML = "<code><br/>circle(400, 263, 50);<br/>circle(350, 350, 50);<br/>circle(450, 350, 50);</code>"; break;
+                case 5: exContent.innerHTML = "A divertirse!";
+                        sentence.innerHTML = "<code>circle(400, 300, 200);<br/>circle(250, 100, 50);<br/>circle(270, 122, 20);<br/>circle(550, 100, 50);<br/>circle(530, 122, 20);<br/>circle(300, 220, 30);<br/>circle(315, 230, 10);<br/>circle(500, 220, 30);<br/>circle(485, 230, 10);<br/>circle(400, 400, 90);<br/>circle(400, 350, 20);</code>";
+            } 
+        }
+        window.onresize = function () {
+            setIFrameSize();
+        }
+
+        function setIFrameSize() {
+            //var parentDivWidth = $("#myframe").parent().width();
+            var iframe = document.getElementById('myframe');
+            var parentDivHeight = document.getElementById('contenido').style.height;
+            iframe.setAttribute('height', parentDivHeight);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Jornada de Programación y diversión</h1>
+    </header>
+
+    <section id="contenido">
+        <h2>Ejercicio <span id="exNumber">1</span></h2>
+        <p id="exContent">Variar los primeros 2 números (parámetros).</p>
+        <p id="sentence"><code>circle(400, 300, 300);</code></p>
+        <button onclick="next(1)">Siguiente</button>
+
+        <iframe id="myframe" src="https://codeguppy.com/code.html" title="Code Guppy"></iframe>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Esther</p>
+    </footer>
+</body>
+</html>
